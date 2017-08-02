@@ -127,6 +127,9 @@ defaultReadObject
 SerializationUtils
 validateObject
 application/x-java-serialized-object
+XMLDecoder
+XStream
+fromXML
 # compression
 GZIPInputStream
 GZIPOutputStream
@@ -170,3 +173,12 @@ jemalloc
 com.sun.jna.Native
 malloc
 free
+# specific to payment industry
+pan
+exp
+cvv
+track
+servicecode
+cardholder
+privatekey
+pin
