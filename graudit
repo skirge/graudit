@@ -16,7 +16,7 @@ vimlines="#"
 color='always'
 sigdb='default'
 separator='##############################################'
-excludefiles='--exclude=graudit.log --exclude=*.txt --exclude=pom.xml --exclude=*.spec --exclude=textile --exclude=*.bz2 --exclude=*.gz --exclude=*.zip --exclude=*.rar --exclude=*.gif --exclude=*.jpg --exclude=*.png --exclude=*.jar --exclude=*.war --exclude=*Test* --exclude=*Mock* --exclude-dir=*test* --exclude-dir=*mock* --exclude-dir=.idea'
+excludefiles='--exclude=*.log --exclude-dir=po --exclude-dir=autotools --exclude=config.status --exclude=libtool --exclude=Makefile* --exclude=*.m4 --exclude=configure* --exclude=README* --exclude=*.txt --exclude=*.spec --exclude=textile --exclude=*.bz2 --exclude=*.gz --exclude=*.zip --exclude=*.rar --exclude=*.gif --exclude=*.jpg --exclude=*.png --exclude=*.jar --exclude=*.war --exclude-dir=*test*" --exclude-dir=*mock*" --exclude-dir=.idea --exclude-dir=*api-doc --exclude-dir=javadoc*'
 
 #Save custom colors
 OLD_COLORS=$GREP_COLORS
