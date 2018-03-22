@@ -70,6 +70,7 @@ getRuntime\s*\(.*\)(\.|\s*;)
 #getRequest
 #[Rr]equest.getParameter
 #getProperty\s*\(
+BeanUtilsBean
 java.security.acl.acl
 print[Ss]tack[Tt]race
 out\.print(ln)?.*[Rr]equest\.
@@ -125,6 +126,7 @@ readResolve
 readUnshared
 defaultReadObject
 SerializationUtils
+JavaSerializer
 validateObject
 application/x-java-serialized-object
 XMLDecoder
@@ -166,6 +168,7 @@ OEE
 CRC
 ROT13
 Arrays.equal
+PKCS1
 Unsafe
 freeMemory
 allocateMemory
@@ -182,3 +185,4 @@ servicecode
 cardholder
 privatekey
 pin
+stackoverflow
