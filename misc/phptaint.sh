@@ -7,10 +7,7 @@ if [ -z "$1" ]; then
     echo "Usage: $0 /path/to/check"
     exit 2
 fi
-RCEHOME=`dirname $0`
-graudit -z -c 0 -d $RCEHOME/rce.db "$1" | \
-perl -ne 'while ($_ =~ m!\$([a-z0-9-_\[\]\x27\>]+)!gi) { print "\\\$$1\n"; print "include\nrequire\n"; }' | \
-sed -e's/\[/\\[/g' -e's/\]/\\]/g' | \
+graudit -z -d php "$1" | \
+perl -ne 'if ($_ =~ m/\$(\S+?)\s*=\s*\$_(GET|POST|REQUEST|COOKIE)\[.*?\]/) { print "\\\$$1\n"; }' | \
 sort | uniq | \
-graudit -d - "$1"
-#more
+graudit -d /dev/stdin "$1"

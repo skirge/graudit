@@ -1,12 +1,12 @@
 #!/bin/bash
-# Graudit - Rough code review tool using grep
+# graudit - Rough code review tool using grep
 # Written by Wireghoul - http://www.justanotherhacker.com
 # Released under the GPL licence
 set -e
 set -o pipefail
-VERSION='2.1'
-basedir=`dirname $0`
-BINFILE=`which grep`
+VERSION='2.3'
+basedir=$(dirname "$0")
+BINFILE=$(which grep)
 
 # Default values
 hidebanner=0
@@ -20,15 +20,16 @@ excludefiles='--exclude=*.log --exclude-dir=po --exclude-dir=autotools --exclude
 
 #Save custom colors
 OLD_COLORS=$GREP_COLORS
+OLD_COLOR=$GREP_COLOR
 
-if [ ! -x $BINFILE ]; then
+if [ ! -x "$BINFILE" ]; then
     echo "grep not found!"
     exit 2
 fi
 $BINFILE --exclude-dir=. test "$0" >/dev/null 2>&1
 if [ $? -eq 2 ]; then
     echo $?
-    echo "Graudit requires a newer version of grep (>=2.5.3)"
+    echo "graudit requires a newer version of grep (>=2.5.3)"
     exit 2
 fi
 banner() {
@@ -42,13 +43,13 @@ banner() {
         \___  /|__|  (____  /____/\____ | |__||__|  
        /_____/            \/           \/           
               grep rough audit - static analysis tool
-                  v2.1 written by @Wireghoul
+                  v2.3 written by @Wireghoul
 =================================[justanotherhacker.com]==='
     fi
 }
 
 version () {
-    echo "Graudit version: $VERSION"
+    echo "graudit version: $VERSION"
 }
 
 usage () {
@@ -57,29 +58,29 @@ usage () {
 Usage: graudit [opts] /path/to/scan
 
 OPTIONS
+  -d <dbname> database to use or /path/to/file.db (uses default if not specified)
   -A scan ALL files
-  -B supress banner
+  -x exclude these files (comma separated list: -x *.js,*.sql)
+  -i case in-sensitive scan
   -c <num> number of lines of context to display, default is 2
-  -d <dbname> database to use or /path/to/db/file
-  -h prints a short help text
-  -i case in-sensitive search
-  -l lists databases available
+
+  -B supress banner
   -L vim friendly lines
-  -v prints version number
-  -x exclude these files (comma seperated list:-x *.js,*.sql)
+  -b colour blind friendly template
   -z supress colors
   -Z high contrast colors
+  
+  -l lists databases available
+  -v prints version number
+  -h prints this help screen
 
-
-Database is one of asp, jsp, other, perl, php, python or default, not providing a database will use default
-/path is the path to the file or directory to audit
 EOU
 }
 
 listdb () {
     banner
-if [ -n "$GRDIR" ] && [ -d $GRDIR ]; then
-    ls -1 $GRDIR/*.db
+if [ -n "$GRDIR" ] && [ -d "$GRDIR" ]; then
+    ls -1 "$GRDIR/*.db"
 fi
 if [ -d /usr/share/graudit/ ]; then
      ls -1 /usr/share/graudit/*.db
@@ -92,7 +93,7 @@ if [ -d "$basedir"/signatures/ ]; then
 fi
 }
 
-while getopts "ABhvilLzZd:c:x:" opt; do
+while getopts "AbBhvilLzZd:c:x:" opt; do
     case $opt in
         B)
             hidebanner=1
@@ -109,11 +110,16 @@ while getopts "ABhvilLzZd:c:x:" opt; do
             listdb
             exit 0
         ;;
+        b)
+	    export GREP_COLORS='ms=93:sl=:cx=:fn=94:ln=92:bn=92:se=32'
+	    export GREP_COLOR='1;35'
+	;;
         z)
             color='none'
         ;;
         Z)
             export GREP_COLORS='ms=41;01;37:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
+	    export GREP_COLOR='1;37;41;'
         ;;
         c)
             context="$OPTARG"
@@ -153,16 +159,16 @@ shift $((OPTIND-1))
 #Database location can vary based on installation
 if [ "$sigdb" == '-' ]; then
     database='-'
-elif [ -f "$GRDIR"/$sigdb.db  ]; then
-    database="$GRDIR"/$sigdb.db
-elif [ -f /usr/share/graudit/$sigdb.db ]; then
-    database=/usr/share/graudit/$sigdb.db
-elif [ -f ~/.graudit/$sigdb.db ]; then
-    database=~/.graudit/$sigdb.db
-elif [ -f "$basedir"/signatures/$sigdb.db ]; then
-    database="$basedir"/signatures/$sigdb.db
+elif [ -f "$GRDIR/$sigdb.db"  ]; then
+    database="$GRDIR/$sigdb.db"
+elif [ -f "/usr/share/graudit/$sigdb.db" ]; then
+    database="/usr/share/graudit/$sigdb.db"
+elif [ -f "$HOME/.graudit/$sigdb.db" ]; then
+    database="$HOME/.graudit/$sigdb.db"
+elif [ -f "$basedir/signatures/$sigdb.db" ]; then
+    database="$basedir/signatures/$sigdb.db"
 else
-    database=$sigdb
+    database="$sigdb"
 fi
 
 
@@ -184,7 +190,7 @@ $BINFILE --color=$color \
          --exclude-dir=.git \
          $excludefiles \
          $icase $ignorepattern \
-         -n -R -H -C $context -E \
+         -n -R -H -C "$context" -E \
          -f "$database" "$@" \
          | sed -e"s/^\(\x1b\[.*m\x1b\[K\)--\(\x1b\[.*\x1b\[K\)$/\1##############################################\2/" -e"s/^--$/$separator/" | sed -e"$vimlines" -e"$zimlines"
 SUCCESS=$?
