@@ -129,9 +129,17 @@ SerializationUtils
 JavaSerializer
 validateObject
 application/x-java-serialized-object
+getValue
+invokeMethod
+invoke
+getMethodInfo
+createMethodExpression
+resolveVariable
+transform
 XMLDecoder
 XStream
 fromXML
+readValue
 # compression
 GZIPInputStream
 GZIPOutputStream
@@ -187,3 +195,6 @@ privatekey
 pin
 stackoverflow
 redirect-action
+getRequestURI
+getServletPath
+alwaysSelectFullNamespace
