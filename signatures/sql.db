@@ -32,6 +32,25 @@ SqlDataAdapter
 CommandType
 StoredProcedure
 System\.Data\.sql
+\.Raw\(.*\)
+\.Query\(.*\)
+\.QueryContext\(.*\)
+\.QueryRow\(.*\)
+\.QueryRowContext\(.*\)
+\.Exec\(.*\)
+\.ExecContext\(.*\)
+#MongoDB rules
+\.connect\(
+\.createCollection\(
+\.collection\(.*\)\.aggregate\(.*
+\.collection\(.*\)\.find(One)?\(.*
+\.collection\(.*\)\.insert(One|Many)?\(.*
+\.collection\(.*\)\.delete(One|Many)?\(.*
+\.collection\(.*\)\.update(One|Many)?\(.*
+\.collection\(.*\)\.drop\(.*
+#MySQL rules
+\.createConnection\(.*
+\.query\(.*\)
 # PHP - Database
 mysql_connect[[:space:]]*\(.*\$.*\)
 mysql_pconnect[[:space:]]*\(.*\$.*\)

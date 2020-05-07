@@ -25,6 +25,9 @@ SQLException
 StackOverflowError
 UnrecoverableEntryException
 UnrecoverableKeyException
+response.sendRedirect[[:space:]]*\(.*(Request|request).*\)
+out\.print(ln)?.*[Rr]equest\.
+<%=[Rr]equest\.
 AccessController
 addHeader
 CallableStatement
@@ -65,7 +68,10 @@ SUPPORT_DTD
 suppressAccessChecks
 TrustManager
 XMLReader
+ObjectInputStream
 readObject[[:space:]]*\(
+resolveClass[[:space:]]*\(
+\.createValueExpression[[:space:]]*\(
 printStackTrace[[:space:]]\(
 SecretKeySpec
 request.getQueryString
@@ -89,6 +95,12 @@ A[Ll][Ll][Oo][Ww]_?A[Ll][Ll]_?H[Oo][Ss][Tt][Nn][Aa][Mm][Ee]_?V[Ee][Rr][Ii][Ff][I
 SSLSocketFactory
 is[Tt]rusted
 trustmanager
+# Expression Language detection
+<spr(ing)?:(message|theme|transform|eval|hasBindErrors|bind|nestedpath)[^\>]+\$\{param
+# Java xss signatures
+<%=.*[Rr]equest\.
+response.sendRedirect[[:space:]]*\(.*[Rr]equest.*\)
+<c:out.*\$\{param
 SAXParserFactory
 DOM4J
 XMLInputFactory

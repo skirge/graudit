@@ -1,3 +1,7 @@
+asm[[:space:]]+
+unsafeAddr([[:space:]]+|[[:space:]]*\()
+open(File)?[[:space:]]*\(
+addr[[:space:]]*\(
 # Execution
 exec[[:space:]]*\(.*\$.*\)
 passthru[[:space:]]*\(.*\)

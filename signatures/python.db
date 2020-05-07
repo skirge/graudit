@@ -1,3 +1,4 @@
+\.NamedTemporaryFile\(.*\)
 access[[:space:]]*\(
 assert[[:space:]]*\(
 mkfifo
@@ -14,7 +15,7 @@ rmdir
 remove[[:space:]]*\(
 \.unlink[[:space:]]*\(
 link[[:space:]]*\(
-execv[[:space:]]\(
+execv[[:space:]]*\(
 execve[[:space:]]*\(
 execl[[:space:]]*\(
 execlp[[:space:]]*\(
@@ -66,3 +67,5 @@ zipfile
 [[:space:]]+compiler
 yaml
 urllib3.disable_warnings
+\.startswith\(
+\.urlopen\(

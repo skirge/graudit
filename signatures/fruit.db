@@ -1,4 +1,46 @@
-# PHP-fruit signatures
+printf[[:space:]]*\([^\,\'\"]+\)\;
+snprintf[[:space:]]*\([^\,]+\,[[:space:]]*sizeof\(.*\%s
+scanf[[:space:]]*\([^\,]+\%s[^\\,]+\,[^\,]+\)\;
+strncpy[[:space:]]*\([^\,]+\,[[:space:]]*sizeof\(
+memcpy[[:space:]]*\([^\,]+\,[^\,]+\,[[:space:]]*sizeof\(
+[[:space:]]gets[[:space:]]*\(
+exec(ve|l|lp|le|v)[[:space:]]*\(
+system[[:space:]]*\(.*\)\;
+(strc(at|py)|memcpy|sprintf|sscanf)[[:space:]]*\(.*argv
+\.WriteString\(.*URL\.Query\(\).*\)
+\.Write\(.*URL.Query\(\).*\)
+\.Println\(.*URL.Query\(\).*\)
+\.Raw\(.*URL.Query\(\).*\)
+\.Query\(.*URL.Query\(\).*\)
+\.QueryContext\(.*URL.Query\(\).*\)
+\.QueryRow\(.*URL.Query\(\).*\)
+\.QueryRowContext\(.*URL.Query\(\).*\)
+\.Exec\(.*URL.Query\(\).*\)
+\.ExecContext\(.*URL.Query\(\).*\)
+\.Open\(.*URL.Query\(\).*\)
+response.sendRedirect[[:space:]]*\(.*(Request|request).*\)
+out\.print(ln)?.*[Rr]equest\.
+<%=[Rr]equest\.
+\.query\(.*[\'\"][[:space:]]*\+.*
+eval[[:space:]]*\([^\)\;]+[\'\"][[:space:]]*\+[[:space:]]*[^\'\"]+
+asm[[:space:]]+[\'\"].*
+unsafeAddr
+execShellCmd[[:space:]]*\(
+# Perl-fruit signatures
+exec[[:space:]]*\(?.*\$ARGV.*\)?
+exec[[:space:]]*\(?.*\$.*->param[[:space:]]*\(.*\).*\)?
+system[[:space:]]*\(?.*\$ARGV.*\)?
+system[[:space:]]*\(?.*\$.*->param[[:space:]]*\(.*\).*\)?
+`.*\$ARGV.*`
+`.*\$.*->param[[:space:]]*\(.*\).*`
+eval[[:space:]]*\(?.*\$ARGV.*\)?
+eval[[:space:]]*\(?.*\$.*->param[[:space:]]*\(.*\).*\)?
+use[[:space:]]+.*\$ARGV.*
+use[[:space:]]+.*\$.*->param[[:space:]]*\(.*\).*
+(WHERE|where)[[:space:]]+.*=.*\$.*->param[[:space:]]*\(.*\)
+(LIKE|like)[[:space:]]+.*\$.*->param[[:space:]]*\(.*\)
+(ORDER BY|order by)[[:space:]]+.*\$.*->param[[:space:]]*\(.*\)
+(LIMIT|limit)[[:space:]]+.*\$.*->param[[:space:]]*\(.*\)
 echo[[:space:]]+.*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http).*
 print[[:space:]]+.*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http).*
 print_r([[:space:]]+|[[:space:]]*\().*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http).*
@@ -35,18 +77,3 @@ pg_query[[:space:]]*\(.*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http).*
 (LIKE|like)[[:space:]]+.*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http)
 (ORDER[[:space:]]+BY|order[[:space:]]+by)[[:space:]]+.*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http)
 (LIMIT|limit)[[:space:]]+.*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http)
-# Perl-fruit signatures
-exec[[:space:]]*\(?.*\$ARGV.*\)?
-exec[[:space:]]*\(?.*\$.*->param[[:space:]]*\(.*\).*\)?
-system[[:space:]]*\(?.*\$ARGV.*\)?
-system[[:space:]]*\(?.*\$.*->param[[:space:]]*\(.*\).*\)?
-`.*\$ARGV.*`
-`.*\$.*->param[[:space:]]*\(.*\).*`
-eval[[:space:]]*\(?.*\$ARGV.*\)?
-eval[[:space:]]*\(?.*\$.*->param[[:space:]]*\(.*\).*\)?
-use[[:space:]]+.*\$ARGV.*
-use[[:space:]]+.*\$.*->param[[:space:]]*\(.*\).*
-(WHERE|where)[[:space:]]+.*=.*\$.*->param[[:space:]]*\(.*\)
-(LIKE|like)[[:space:]]+.*\$.*->param[[:space:]]*\(.*\)
-(ORDER BY|order by)[[:space:]]+.*\$.*->param[[:space:]]*\(.*\)
-(LIMIT|limit)[[:space:]]+.*\$.*->param[[:space:]]*\(.*\)

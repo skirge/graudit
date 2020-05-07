@@ -6,11 +6,16 @@ HtmlEncode
 UrlEncode
 innerText
 innerHTML
+URL\.Query\(\).*
+QueryUnescape\(.*
+# Java xss signatures
+<%=.*[Rr]equest\.
+response.sendRedirect[[:space:]]*\(.*[Rr]equest.*\)
+<c:out.*\$\{param
 # Perl xss signatures
 print\s*.*\$.*->param\(?.*\)?
 # PHP xss signatures
 echo[[:space:]]+.*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http).*
 print[[:space:]]+.*\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http).*
 print_r([[:space:]]*\(|[[:space:]]+).*\)?\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http).*
-\<\?\=\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http)
-\<\%\=\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http)
+\<[\?\%]\=\$(_ENV|_GET|_POST|_COOKIE|_REQUEST|_SERVER|HTTP|http)
